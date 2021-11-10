@@ -1,0 +1,255 @@
+<!-- Jeffrey McFarland -->
+<!-- jdm1027 -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>LED Clock and Timer</title>
+    <script src="timer.js"></script>
+	<style>
+		button {
+			font-size: 20px;
+			margin: 0px 10px 0px 0px;
+		}
+
+		body {
+			background-color: black;
+		}
+
+		h1 {
+			color: white;
+		}
+
+		svg {
+			margin-right: 16px;
+		}
+
+		.hour,
+		.minute,
+		.second,
+		.period {
+			position: relative;
+			display: inline-block;
+			margin: 20px;
+		}
+
+		.hour::before, .hour::after, .minute::before, .minute::after {
+			content: '';
+			position: absolute;
+			right: -20px;
+			width: 15px;
+			height: 15px;
+			background-color: green;
+		}
+
+		.hour::before, .minute::before {
+			top: 60px;
+		}
+
+		.hour::after, .minute::after {
+			top: 160px;
+		}
+
+		/* editing the different number paths */
+		/* number one */
+		.clock svg.num1 .b,
+		.clock svg.num1 .c,
+
+		/* number two */
+		.clock svg.num2 .a,
+		.clock svg.num2 .b,
+		.clock svg.num2 .d,
+		.clock svg.num2 .e,
+		.clock svg.num2 .g,
+
+		/* number three */
+		.clock svg.num3 .a,
+		.clock svg.num3 .b,
+		.clock svg.num3 .c,
+		.clock svg.num3 .d,
+		.clock svg.num3 .g,
+
+		/* number four */
+		.clock svg.num4 .b,
+		.clock svg.num4 .c,
+		.clock svg.num4 .f,
+		.clock svg.num4 .g,
+
+		/* number five */
+		.clock svg.num5 .a,
+		.clock svg.num5 .c,
+		.clock svg.num5 .d,
+		.clock svg.num5 .f,
+		.clock svg.num5 .g,
+
+		/* number six */
+		.clock svg.num6 .a,
+		.clock svg.num6 .c,
+		.clock svg.num6 .d,
+		.clock svg.num6 .e,
+		.clock svg.num6 .f,
+		.clock svg.num6 .g,
+
+		/* number seven */
+		.clock svg.num7 .a,
+		.clock svg.num7 .b,
+		.clock svg.num7 .c,
+
+		/* number eight */
+		.clock svg.num8 .a,
+		.clock svg.num8 .b,
+		.clock svg.num8 .c,
+		.clock svg.num8 .d,
+		.clock svg.num8 .e,
+		.clock svg.num8 .f,
+		.clock svg.num8 .g,
+
+		/* number nine */
+		.clock svg.num9 .a,
+		.clock svg.num9 .b,
+		.clock svg.num9 .c,
+		.clock svg.num9 .d,
+		.clock svg.num9 .f,
+		.clock svg.num9 .g,
+
+		/* number zero */
+		.clock svg.num0 .a,
+		.clock svg.num0 .b,
+		.clock svg.num0 .c,
+		.clock svg.num0 .d,
+		.clock svg.num0 .e,
+		.clock svg.num0 .f {
+			fill: green;
+		}
+
+		p {
+			color: green;
+			font-size: 100px;
+		}
+
+	</style>
+</head>
+
+<body onload="periodChange()">
+	<h1>Jeff McFarland</h1>
+
+	<div class="clock">
+
+		<!-- path layouts -->
+		<svg width="0" height="0" viewBox="0 0 0 0">
+			<defs>
+				<g id="flat">
+					<path d="M0 20 L20 40 L180 40 L200 20 L180 0 L20 0 Z"></path>
+				</g>
+				<g id="tall">
+					<path d="M20 0 L0 20 L0 180 L20 200 L40 180 L40 20 Z"></path>
+				</g>
+			</defs>
+		</svg>
+
+		<!-- hours -->
+		<div class="hour">
+			<svg id="hour1" class="num0" width="100" height="240" viewBox="0 0 260 480">
+				<use xlink:href="#flat" class="seg a" x="30" y="0"></use>
+				<use xlink:href="#tall" class="seg b" x="220" y="30"></use>
+				<use xlink:href="#tall" class="seg c" x="220" y="250"></use>
+				<use xlink:href="#flat" class="seg d" x="30" y="440"></use>
+				<use xlink:href="#tall" class="seg e" x="0" y="250"></use>
+				<use xlink:href="#tall" class="seg f" x="0" y="30"></use>
+				<use xlink:href="#flat" class="seg g" x="30" y="220"></use>
+			</svg>
+			<svg id="hour2" class="num0" width="100" height="240" viewBox="0 0 260 480">
+				<use xlink:href="#flat" class="seg a" x="30" y="0"></use>
+				<use xlink:href="#tall" class="seg b" x="220" y="30"></use>
+				<use xlink:href="#tall" class="seg c" x="220" y="250"></use>
+				<use xlink:href="#flat" class="seg d" x="30" y="440"></use>
+				<use xlink:href="#tall" class="seg e" x="0" y="250"></use>
+				<use xlink:href="#tall" class="seg f" x="0" y="30"></use>
+				<use xlink:href="#flat" class="seg g" x="30" y="220"></use>
+			</svg>
+		</div>
+
+		<!-- minutes -->
+		<div class="minute">
+			<svg id="minute1" class="num0" width="100" height="240" viewBox="0 0 260 480">
+				<use xlink:href="#flat" class="seg a" x="30" y="0"></use>
+				<use xlink:href="#tall" class="seg b" x="220" y="30"></use>
+				<use xlink:href="#tall" class="seg c" x="220" y="250"></use>
+				<use xlink:href="#flat" class="seg d" x="30" y="440"></use>
+				<use xlink:href="#tall" class="seg e" x="0" y="250"></use>
+				<use xlink:href="#tall" class="seg f" x="0" y="30"></use>
+				<use xlink:href="#flat" class="seg g" x="30" y="220"></use>
+			</svg>
+			<svg id="minute2" class="num0" width="100" height="240" viewBox="0 0 260 480">
+				<use xlink:href="#flat" class="seg a" x="30" y="0"></use>
+				<use xlink:href="#tall" class="seg b" x="220" y="30"></use>
+				<use xlink:href="#tall" class="seg c" x="220" y="250"></use>
+				<use xlink:href="#flat" class="seg d" x="30" y="440"></use>
+				<use xlink:href="#tall" class="seg e" x="0" y="250"></use>
+				<use xlink:href="#tall" class="seg f" x="0" y="30"></use>
+				<use xlink:href="#flat" class="seg g" x="30" y="220"></use>
+			</svg>
+		</div>
+
+		<!-- seconds -->
+		<div class="second">
+			<svg id="second1" class="num0" width="100" height="240" viewBox="0 0 260 480">
+				<use xlink:href="#flat" class="seg a" x="30" y="0"></use>
+				<use xlink:href="#tall" class="seg b" x="220" y="30"></use>
+				<use xlink:href="#tall" class="seg c" x="220" y="250"></use>
+				<use xlink:href="#flat" class="seg d" x="30" y="440"></use>
+				<use xlink:href="#tall" class="seg e" x="0" y="250"></use>
+				<use xlink:href="#tall" class="seg f" x="0" y="30"></use>
+				<use xlink:href="#flat" class="seg g" x="30" y="220"></use>
+			</svg>
+			<svg id="second2" class="num0" width="100" height="240" viewBox="0 0 260 480">
+				<use xlink:href="#flat" class="seg a" x="30" y="0"></use>
+				<use xlink:href="#tall" class="seg b" x="220" y="30"></use>
+				<use xlink:href="#tall" class="seg c" x="220" y="250"></use>
+				<use xlink:href="#flat" class="seg d" x="30" y="440"></use>
+				<use xlink:href="#tall" class="seg e" x="0" y="250"></use>
+				<use xlink:href="#tall" class="seg f" x="0" y="30"></use>
+				<use xlink:href="#flat" class="seg g" x="30" y="220"></use>
+			</svg>
+		</div>
+		<div class="period">
+			<p id="whichPeriod">test</p>
+		</div>
+
+	</div>
+
+	<!-- JavaScript library that helps make the live clock -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script>
+		function createClock() {
+			var hour = moment().format("HH");
+			var minute = moment().format("mm");
+			var second = moment().format("ss");
+
+			// changes the class based on the proper hours/mins/secs of the day
+			document.getElementById("hour1").setAttribute("class", "num" + hour.substr(0,1));
+			document.getElementById("hour2").setAttribute("class", "num" + hour.substr(1,1));
+			document.getElementById("minute1").setAttribute("class", "num" + minute.substr(0,1));
+			document.getElementById("minute2").setAttribute("class", "num" + minute.substr(1,1));
+			document.getElementById("second1").setAttribute("class", "num" + second.substr(0,1));
+			document.getElementById("second2").setAttribute("class", "num" + second.substr(1,1));
+
+			setTimeout(createClock, 1000);
+		}
+
+
+
+		createClock();
+	</script>
+
+	<h1 id="timer">00:00:00</h1>
+
+	<button onclick="timerStart()" type="button">Start Timer</button>
+	<button onclick="stopAudio()" type="button">Stop Music</button>
+
+	<input type="text" id="timerHours" name="timer" placeholder="hours" size="3">
+	<input type="text" id="timerMinutes" name="timer" placeholder="minutes" size="3">
+	<input type="text" id="timerSeconds" name="timer" placeholder="seconds" size="3">
+</body>
+</html>
